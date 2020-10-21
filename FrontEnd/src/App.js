@@ -1,27 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import BuildingList from './components/BuildingList';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+const BuildingListOrderByCity = () =>{
+  return <BuildingList order="city"/>
+}
+
+const BuildingListOrderByRank = () =>{
+  return <BuildingList order="country"/>
+}
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <BuildingList/>
+    <BrowserRouter>
+        <main>
+      <Switch>
+          <Route path="/" component={BuildingList} exact />
+          <Route path="/city" component={BuildingListOrderByCity} />
+          <Route path="/country" component={BuildingListOrderByRank} />
+      </Switch>
+  </main>
+    </BrowserRouter>
   );
 }
 

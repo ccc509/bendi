@@ -3,18 +3,44 @@ const cors = require('cors');
 const app = express();
 const port = 8080;
 
-const buildings = [
-    {hash: 2, city: "New Work", Country: "USA", 
-    allBuildings: 100, 100: 1234, 150: 1234, 200: 1521,300: 124,telecomTowers: 1234,allStructures:12347},
-    {hash: 1, city: "London", Country: "UK", 
-    allBuildings: 160, 100: 1934, 150: 12234, 200: 1521, 300: 2124,telecomTowers: 13234,allStructures:1237},
-];
+const rawData = require('./data/rawData');
+
+const toInt = (value) =>{
+    if(isNaN(value)){
+        return parseFloat(value.replace(/,/g, ""));
+    }
+    return value;
+}
+
+const buildings = rawData.split('\n').map(r => {
+    const dataArray = r.split(',');
+    return {
+        hash: toInt(dataArray[0]), 
+        city: dataArray[1], 
+        country: dataArray[2], 
+        allBuildings: toInt(dataArray[3]), 
+        100: toInt(dataArray[4]), 
+        150: toInt(dataArray[5]), 
+        200: toInt(dataArray[6]),
+        300: toInt(dataArray[7]),
+        telecomTowers: toInt(dataArray[8]),
+        allStructures: toInt(dataArray[9])
+    }
+})
 
 app.use(cors());
 
 app.get('/', (req, res) => {
     console.log(`Order to return: ${req.query.order}`);
-    res.send(buildings);
+    switch(req.query.order){
+        case "city":
+            res.send(buildings.sort((a, b) => {return a.city>b.city?1:-1}));
+        case "country":
+            res.send(buildings.sort((a, b) => {return a.country>b.country?1:-1}));
+        default:
+            res.send(buildings);
+    }
+    
 });
 
 app.listen(port, ()=>{

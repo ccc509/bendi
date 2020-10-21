@@ -5,7 +5,7 @@ import "./style.css";
 
 const BuildingList = ({order}) =>{
     const attributeLookUp = {
-        hash: '#', city: 'City', Country: 'Country', 
+        hash: '#', city: 'City', country: 'Country', 
         allBuildings: 'All Buildings', 100: '100m+', 
         150: '150m+', 200: '200m+',300: '300m+',telecomTowers: 'Telecom Towers',allStructures:'All Structures'
     };

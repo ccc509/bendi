@@ -1,5 +1,4 @@
-export const rawData = '#,City,Country,"All Buildings",100m+,150m+,200m+,300m+,"Telecom Towers","All Structures"\n' +
-'2,New York City,United States,"1,390",803,257,66,7,2,"1,398"\n' +
+const rawData = '2,New York City,United States,"1,390",803,257,66,7,2,"1,398"\n' +
 '1,Hong Kong,China,820,555,317,64,6,0,820\n' +
 '6,Chicago,United States,524,317,119,29,6,1,526\n' +
 '4,Tokyo,Japan,348,284,145,26,0,2,351\n' +
@@ -36,3 +35,5 @@ export const rawData = '#,City,Country,"All Buildings",100m+,150m+,200m+,300m+,"
 '54,Calgary,Canada,90,63,17,4,1,1,91\n' +
 '68,Brisbane,Australia,97,60,13,5,0,0,97\n' +
 '54,London,United Kingdom,263,59,17,5,1,5,272';
+
+module.exports = rawData;
